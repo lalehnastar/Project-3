@@ -9,9 +9,10 @@ const
     postController = require('../controllers/postController.js')
 
     router.get('/', userController.index)
+    router.get('/signup', userController.new)    
     router.post('/users', userController.create)    
-    router.get('/user/:id/new', userController.new)
-    router.get('/user/:id/', userController.edit)
+    // router.get('/user/new', userController.new)
+    router.get('/user/:id/edit', userController.edit)
     router.get('/user/:id', userController.show)
     router.patch('/user/:id/', userController.update)
     router.delete('/user/:id', userController.destroy)
