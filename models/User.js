@@ -6,7 +6,7 @@ const
         email: {type: String, required: true, unique: true},
         username: {type: String, required: true, unique: true},
         password: {type: String, required: true},
-        imageURL = {type: String}
+        imageURL: {type: String}
     }),
     // create model using mongoose
     User = mongoose.model("User", userSchema)
