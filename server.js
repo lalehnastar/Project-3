@@ -53,7 +53,7 @@ app.use(passport.session())
 app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => {
-    res.sendFile(`${__dirname}/public/index.html`)
+    res.render(`${__dirname}/public/index.ejs`)
 })
 
 // Use Router
