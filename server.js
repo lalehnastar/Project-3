@@ -27,7 +27,7 @@ app.use(bodyParser.json())
 app.use(logger('dev'))
 app.use(express.static(`${__dirname}/public`))
 app.use(cookieParser())
-app.use(flahs())
+app.use(flash())
 
 // Is this unnecessary for a SPA?? 
 /* app.get('/', (req, res) => {
