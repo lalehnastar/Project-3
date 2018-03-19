@@ -11,8 +11,11 @@ router.get('/', userController.index)
 router.get('/signup', userController.new)
 
 // Create new user
-router.route('/users')
-    .post(userController.create) 
+router.route('/')
+    .post(passport.authenticate('local-signup', {
+        successRedirect: '/whoa',
+        failureRedicrect: '/lose'
+    })) 
 
 // Show, update and delete specific user
 router.route('/users/:id')
