@@ -31,17 +31,17 @@ router.get('/', postController.index)
 router.post('/posts', postController.create) 
 
 // Create, show and delete specific post
-router.route('/post/:id')   
+router.route('/posts/:postId')   
     .get(postController.show)
     .delete(postController.destroy)
 
 // Edit specific post
-router.route('/user/:userId/post/:postId')
+router.route('/user/:userId/posts/:postId')
     router.get(postController.edit)
     router.patch(postController.update)
 
 // Create new post
-router.get('/post/:id/new', postController.new)
+router.get('/posts/:id/new', postController.new)
     
 function isLoggedIn(req, res, next) {
     if(req.isAuthenticated()) return next()
