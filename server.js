@@ -11,6 +11,7 @@ const
     cookieParser = require('cookie-parser'),
     axios = require('axios'),
     httpClient = axios.create(),
+    methodOverride = require('method-override')
     MongoDBStore = require('connect-mongodb-session')(session),
     flash = require('connect-flash'),
     passportConfig = require('./config/passport.js'),
@@ -27,6 +28,7 @@ app.use(bodyParser.json())
 app.use(logger('dev'))
 app.use(express.static(`${__dirname}/public`))
 app.use(cookieParser())
+app.use(methodOverride('_method'))
 app.use(flash())
 
 // Is this unnecessary for a SPA?? 
