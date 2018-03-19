@@ -1,12 +1,9 @@
-// require express
-// create new router using express
-// require controller
 const
-    express = require('express'),
-    router = new express.Router(),
-    passport = require('passport'),
-    userController = require('../controllers/userController.js')
-    postController = require('../controllers/postController.js')
+    express = require('express'),                                   // require express
+    router = new express.Router(),                                  // create new router using express
+    passport = require('passport'),                                 // require passport
+    userController = require('../controllers/userController.js')    // require user cntrlr
+    postController = require('../controllers/postController.js')    // require post cntrlr
 
     router.get('/', userController.index)
     router.get('/signup', userController.new)    
@@ -25,15 +22,15 @@ const
     router.patch('/user/:id/post/:id', postController.update)
     router.delete('/post/:id', postController.destroy)
 
-
-// export router
-module.exports = routers
-
-
-
-//
 function isLoggedIn(req, res, next) {
     if(req.isAuthenticated()) return next()
     res.redirect('/users/login')
-  }
+}
+
+// export router
+module.exports = router
+
+
+
+
 

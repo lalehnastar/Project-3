@@ -17,13 +17,10 @@ show: (req, res) =>{
     })
    
 },
-
 //new 
 new: (req, res) =>{
  
 },
-
-
 //create
 create: (req, res) =>{
    
@@ -36,7 +33,6 @@ create: (req, res) =>{
 
   
 },
-
 //edit 
 edit: (req, res) =>{
   
