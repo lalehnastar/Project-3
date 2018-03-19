@@ -49,6 +49,9 @@ app.use(session({							// allows us to generate cookies based on passport confi
 app.use(passport.initialize())
 app.use(passport.session())
 
+// ejs configuration
+app.set('view engine', 'ejs')
+
 app.get('/', (req, res) => {
     res.sendFile(`${__dirname}/public/index.html`)
 })
