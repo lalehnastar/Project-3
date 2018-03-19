@@ -27,7 +27,7 @@ const
 
 
 // export router
-module.exports = routers
+module.exports = router
 
 
 
