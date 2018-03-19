@@ -23,7 +23,7 @@ const
 // environment port
 const
 	port = process.env.PORT || 3000,
-	mongoConnectionString = process.env.MONGODB_URL || 'mongodb://localhost/passport-authentication'
+	mongoConnectionString = process.env.MONGODB_URL || 'mongodb://localhost/postrDB'
 
 // will store session information as a 'sessions' collection in Mongo
 const store = new MongoDBStore({
@@ -49,10 +49,9 @@ app.use(session({							// allows us to generate cookies based on passport confi
 app.use(passport.initialize())
 app.use(passport.session())
 
-// Is this unnecessary for a SPA?? 
-/* app.get('/', (req, res) => {
-    res.sendFile(``${__dirname}/public/index.html)
-}) */
+app.get('/', (req, res) => {
+    res.sendFile(`${__dirname}/public/index.html`)
+})
 
 // Use Router
 app.use('/', postrRouter)
