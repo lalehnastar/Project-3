@@ -19,9 +19,15 @@ router.route('/users')
 
 router.route('/login')
     .post(passport.authenticate('local-login', {
-        successRedirect: "/loginsuccess",
+        successRedirect: "/",
         failureRedirect: "/loginfailed"
     }))
+
+router.route('/logout')
+    .get((req, res) => {
+        req.logout()
+        res.redirect('/')
+      })
 
 // Show, update and delete specific user
 router.route('/users/:id')
