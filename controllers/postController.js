@@ -4,7 +4,9 @@ const Post = require('../models/Post.js')
 module.exports = {
 
     index: (req, res) =>{
+
         Post.find({}).populate("user").exec((err, allDemPosts)=> {
+
         res.json(allDemPosts)
         })
 

@@ -1,14 +1,32 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Postr</a>
+  <a class="navbar-brand" href="#">Postr</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
+  <% if (!loggedIn){ %>
+  <form action="/api/login" method="post">
+    <div class="form-group logindiv">
+      <div class="login">
+        <input type="text" class="form-control" name="username" placeholder="Username">
+      </div>
+
+      <div class="login">
+        <input type="password" class="form-control" name="password" placeholder="Password">
+      </div>
+
+      <div class="login">
+        <button type="submit" class="btn btn-success btn-lg">Login</button>
+      </div>
+    </div>
+  </form>
+    <% } %>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <% if (loggedIn){ %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <%= `${currentUser.username}` %>
+              <%= "@" + `${currentUser.username}` %>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" href="#">Profile</a>
@@ -23,7 +41,9 @@
         <% } %>
       </ul>
     </div>
-  </nav>
+</nav>
+
+  
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -37,8 +57,7 @@
         <form action="/api/posts" method="post">
           <div class="modal-body">
               <div class="form-group">
-                <label for="message-text" class="col-form-label">Status:</label>
-                <textarea name="body" class="form-control" id="message-text"></textarea>
+                <textarea name="body" class="form-control" id="message-text" placeholder="Tell us what's on your mind..."></textarea>
               </div>
           </div>
           <div class="modal-footer">
