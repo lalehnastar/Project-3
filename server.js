@@ -35,7 +35,7 @@ const store = new MongoDBStore({
     collection: 'sessions'
   });
 
-// middleware
+// Middleware
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use(logger('dev'))
@@ -45,7 +45,7 @@ app.use(methodOverride('_method'))
 app.use(flash())
 app.use(session({							// allows us to generate cookies based on passport configuration
 	secret: "secretstring",
-	cookie: {maxAge: 60000000},				// cookie is good for this long. will log out once expired
+	cookie: {maxAge: 60000000},				// cookie is good for this amount of time. will log out once expired
 	resave: true,
 	saveUninitialized: false,				// if someones not logged in, dont generate cookie
 	store: store							// where do we keep cookies? server (mongo). check line 27
@@ -60,8 +60,6 @@ app.get('/', (req, res) => {
     res.render(`${__dirname}/public/index.ejs`)
 })
 
-
-
 // Use Router
 app.use('/api', postrRouter)
 
@@ -71,6 +69,7 @@ io.on('connection', (socket) => {
     io.emit('post-message', post)
 })
 
+// Server Setup
 app.listen(PORT, (err) => {
     console.log(err || `Connected to port#: ${PORT}`)
 })

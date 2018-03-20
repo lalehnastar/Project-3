@@ -38,7 +38,7 @@ passport.use('local-signup', new LocalStrategy({            // the following exe
 }))
 
 passport.use('local-login', new LocalStrategy({
-    usernameField: 'username',                                             // map field to schema
+    usernameField: 'username',                                                                                             // map field to schema
     passwordField: 'password',
     passReqToCallback: true
 }, (req, email, password, done) => {

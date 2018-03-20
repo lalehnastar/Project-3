@@ -18,7 +18,7 @@ router.route('/users')
     }))
 
 router.route('/login')
-    .post(passport.authenticate('local-login',{
+    .post(passport.authenticate('local-login', {
         successRedirect: "/loginsuccess",
         failureRedirect: "/loginfailed"
     }))
