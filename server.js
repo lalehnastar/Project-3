@@ -60,6 +60,12 @@ app.use((req, res, next) => {
     next()
 })
 
+app.use((req, res, next) => {
+	app.locals.currentUser = req.user
+	app.locals.loggedIn = !!req.user
+	next()
+})
+
 // ejs configuration
 app.set('view engine', 'ejs')
 
