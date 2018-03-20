@@ -40,7 +40,7 @@ router.get('/user/:id/edit', userController.edit)
 
 
 // ------------ POST ROUTES
-router.get('/', postController.index)
+router.get('/posts', postController.index)
 
 // Create new post
 router.post('/posts', postController.create) 

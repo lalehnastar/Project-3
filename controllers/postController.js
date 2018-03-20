@@ -21,9 +21,12 @@ module.exports = {
     },
 
     create: (req, res) =>{
-        Post.create(req.body, (err, brandNewPost) => {
-            if(err) return res.json({ success: false })
-            res.json({ success: true, message: "post created.", post: brandNewPost })
+        var newPost = new Post(req.body)
+        newPost.user = req.user
+        newPost.save((err, savedPost)=>{
+        if(err) return res.json({ success: false })
+        // res.json({ success: true, message: "post created.", post: savedPost })
+        res.redirect("/")
         })
     },
     
