@@ -6,23 +6,19 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <% if (loggedIn){ %>
-        <li class="nav-item">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                Launch demo modal
-              </button>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/api/logout">logout</a>
-        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            dropdown link
+            <%= `${currentUser.username}` %>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item" href="#">Profile</a>
+            <a class="dropdown-item" href="/api/logout">logout</a>
           </div>
+        </li>
+        <li class="nav-item">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+                +
+              </button>
         </li>
         <% } %>
       </ul>
