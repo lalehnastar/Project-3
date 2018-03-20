@@ -1,6 +1,8 @@
 const 
     // require mongoose
     mongoose = require("mongoose"),
+    // require bcrypt
+    bcrypt = require("bcrypt-nodejs")
     // create schema
     userSchema = new mongoose.Schema({
         email: {type: String, required: true},
@@ -8,10 +10,7 @@ const
         imageURL: {type: String, default: ""},
         password: {type: String}
         
-    }),
-    bcrypt = require("bcrypt-nodejs")
-    // create model using mongoose
-  
+    })
 
     // Authentication
     userSchema.methods.generateHash = function(password) {
@@ -22,10 +21,10 @@ const
         return bcrypt.compareSync(password, this.password)       
       }
 
+// create model using mongoose
 const User = mongoose.model("User", userSchema)
-
     
-    // export model
+// export model
 module.exports = User
 
 
