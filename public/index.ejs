@@ -8,8 +8,10 @@
     <title>Document</title>
 </head>
 <body>
-
+<% if (!loggedIn){ %>
 <%- include ../views/partials/log-in.ejs %>
-
+<% } else { %>
+<%- include ../views/partials/navbar.ejs %>
+    <% } %>
 </body>
 </html>
