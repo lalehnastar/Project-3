@@ -42,6 +42,7 @@ passport.use('local-login', new LocalStrategy({
     passwordField: 'password',
     passReqToCallback: true
 }, (req, email, password, done) => {
+    var username = req.body.username
     User.findOne({ username: username }, (err, user) =>{                                                                   // find user with email provided
         if(err) return done(err)                                                                                           // if error, return done w/ error (allows us to console.log)
         if(!user) return done(null, false, req.flash('loginMessage', "username not found"))                                // if 'user' if falsey, there is no user with that email
