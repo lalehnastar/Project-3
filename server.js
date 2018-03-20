@@ -71,6 +71,7 @@ app.use((req, res, next) => {
 app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => {
+    console.log("redirect")
     res.render(`${__dirname}/public/index.ejs`)
 })
 

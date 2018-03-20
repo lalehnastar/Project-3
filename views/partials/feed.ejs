@@ -5,20 +5,18 @@
 
 
 
-<div id="feed"> </div>
+<div id="feed"> 
+
+</div>
 
 <script>
     var httpClient = axios.create()
     var $feed = $("#feed")
-
-    const options = {
-        method: "get",
-        url: "/api/posts"
-    }
-
-    httpClient(options).then((serverResponse)=>{
-        console.log(serverResponse)
-        for(var i = 0; i < serverResponse.data.length; i++) {
+    var $card = $(".card")
+    var posts = []
+    function updateList(data){
+        for(var i = 0; i < data.data.length; i++) {
+        posts.push(data.data[i])
          $feed.append(`
          <div class="card text-left">
             <div class="row">
@@ -27,15 +25,41 @@
                 </div>
                 
                 <div class="col-sm-8">
-                <h5 class="card-title">${serverResponse.data[i]._id}</h5>
-                <p class="card-text"> ${serverResponse.data[i].body}</p>
-                <a href="#" class="btn btn-primary">Edit</a>
-                <a href="#" class="btn btn-primary">Delete</a>
+                <h5 class="card-title">${data.data[i].user.username}</h5>
+                <p class="card-text"> ${data.data[i].body}</p>
+                <a href="#" class="btn btn-primary edit">Edit</a>
+                <a href="#" id=${data.data[i]._id}  class="btn btn-primary delete">Delete</a>
                 </div>
             </div>
         </div>
         `)
-        }
+    }
+}
+    const options = {
+        method: "get",
+        url: "/api/posts"
+    }
+
+    httpClient(options).then((serverResponse)=>{
+        console.log(serverResponse)
+        updateList(serverResponse)
     })
+
+    $feed.on("click", ".delete" , function(){
+        var postId = $(this).attr("id")
+        console.log(postId)
+        var urlLocation = `/api/posts/${postId}`
+        // var specificPost = posts.find((p, i) => p._id === postId)
+        // var index = posts.indexOf(specificPost)
+        // posts.splice(index, 1)
+        // updateList(posts)
+        // debugger
+     httpClient({url: urlLocation , method: "delete"}).then((serverResponse)=>{
+        console.log(serverResponse)
+           
+        })
+        
+    })
+
 </script>
 

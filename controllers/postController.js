@@ -4,7 +4,7 @@ const Post = require('../models/Post.js')
 module.exports = {
 
     index: (req, res) =>{
-        Post.find({}, (err, allDemPosts)=> {
+        Post.find({}).populate("user").exec((err, allDemPosts)=> {
         res.json(allDemPosts)
         })
 
@@ -40,9 +40,11 @@ module.exports = {
     },
 
     destroy: (req, res) =>{
-    Post.findByIdAndRemove(req.params.id, (err) =>{
+        Post.findByIdAndRemove(req.params.postId, (err) =>{
         if(err) return res.json({ success: false })
-        res.json({ success: true, message: "post deleted." })
+        // res.json({ success: true, message: "post deleted." })
+        console.log("im here")
+        // res.render("/")
         })
     }
 } 
