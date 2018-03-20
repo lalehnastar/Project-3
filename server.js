@@ -49,7 +49,8 @@ app.use(session({							// allows us to generate cookies based on passport confi
 	resave: true,
 	saveUninitialized: false,				// if someones not logged in, dont generate cookie
 	store: store							// where do we keep cookies? server (mongo). check line 27
-}))			
+}))	
+
 app.use(passport.initialize())
 app.use(passport.session())
 // this makes the 'currentUser' available in ANY view
@@ -75,6 +76,11 @@ app.get('/', (req, res) => {
 
 // Use Router
 app.use('/api', postrRouter)
+
+function authorization(req, res, next) {
+	if(req.isAuthenticated()) return next()
+	res.redirect('/users/login')
+}
 
 // Web Socket Setup
 io.on('connection', (socket) => {

@@ -4,12 +4,12 @@ const
     User = require('../models/User.js')
 
 passport.serializeUser((user, done) => {
-    done(null, user._id)
+   done(null, user._id) 
 })
 
 passport.deserializeUser((id, done) => {
-    User.findById(id, (err, thatUser) => {
-        done(err, thatUser)
+    User.findById(id, (err, thatUser)=> {
+done(err, thatUser)
     })
 })
 
@@ -17,6 +17,7 @@ passport.use('local-signup', new LocalStrategy({            // the following exe
     usernameField: 'username',                              // tell passport email and password field names in our DB
     passwordField: 'password',
     passReqToCallback: true
+    //req after sign in with all its information 
 }, (req, email, password, done) => {
     var email = req.body.email
     User.findOne({email: email}, (err, user) => {                      // makes sure email is unique, check to see if it already exists
@@ -32,9 +33,10 @@ passport.use('local-signup', new LocalStrategy({            // the following exe
         newUser.imageURL = req.body.imageURL 
         newUser.password = newUser.generateHash(req.body.password)      // encrypt password
         newUser.save((err, savedUser) => {
-            return done(null, newUser, req.flash('loginMessage', "account created"))
+            return done(null, newUser)
         })
-    })                                         
+       
+    })
 }))
 
 passport.use('local-login', new LocalStrategy({
