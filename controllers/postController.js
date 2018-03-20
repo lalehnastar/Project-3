@@ -21,9 +21,7 @@ module.exports = {
     },
 
     create: (req, res) =>{
-    
         Post.create(req.body, (err, brandNewPost) => {
-        
             if(err) return res.json({ success: false })
             res.json({ success: true, message: "post created.", post: brandNewPost })
         })

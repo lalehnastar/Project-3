@@ -23,7 +23,11 @@ const
 // environment port
 const
 	port = process.env.PORT || 3000,
-	mongoConnectionString = process.env.MONGODB_URL || 'mongodb://localhost/postrDB'
+    mongoConnectionString = process.env.MONGODB_URL || 'mongodb://localhost/postrDB'
+
+mongoose.connect(mongoConnectionString, (err)=>{
+    console.log(err || "Connected to MongoDB")
+})
 
 // will store session information as a 'sessions' collection in Mongo
 const store = new MongoDBStore({
@@ -31,7 +35,7 @@ const store = new MongoDBStore({
     collection: 'sessions'
   });
 
-// middleware
+// Middleware
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use(logger('dev'))
@@ -41,14 +45,19 @@ app.use(methodOverride('_method'))
 app.use(flash())
 app.use(session({							// allows us to generate cookies based on passport configuration
 	secret: "secretstring",
-	cookie: {maxAge: 60000000},				// cookie is good for this long. will log out once expired
+	cookie: {maxAge: 60000000},				// cookie is good for this amount of time. will log out once expired
 	resave: true,
 	saveUninitialized: false,				// if someones not logged in, dont generate cookie
 	store: store							// where do we keep cookies? server (mongo). check line 27
-}))			
+}))	
+
 app.use(passport.initialize())
 app.use(passport.session())
-
+app.use((req, res, next) => {
+    app.locals.currentUser = req.user
+    app.locals.loggedIn = !!req.user
+    next()
+})	
 // ejs configuration
 app.set('view engine', 'ejs')
 
@@ -57,7 +66,12 @@ app.get('/', (req, res) => {
 })
 
 // Use Router
-app.use('/', postrRouter)
+app.use('/api', postrRouter)
+
+function authorization(req, res, next) {
+	if(req.isAuthenticated()) return next()
+	res.redirect('/users/login')
+}
 
 // Web Socket Setup
 io.on('connection', (socket) => {
@@ -65,6 +79,7 @@ io.on('connection', (socket) => {
     io.emit('post-message', post)
 })
 
+// Server Setup
 app.listen(PORT, (err) => {
     console.log(err || `Connected to port#: ${PORT}`)
 })
