@@ -3,8 +3,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
-
-
 <div id="feed"> </div>
 
 <script>
@@ -20,17 +18,21 @@
         console.log(serverResponse)
         for(var i = 0; i < serverResponse.data.length; i++) {
          $feed.append(`
-         <div class="card text-left">
-            <div class="row">
-                <div class="col-sm-4">
-                    <img id="photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Buck_The_GSD.jpg/170px-Buck_The_GSD.jpg">
-                </div>
-                
-                <div class="col-sm-8">
-                <h5 class="card-title">${serverResponse.data[i]._id}</h5>
-                <p class="card-text"> ${serverResponse.data[i].body}</p>
-                <a href="#" class="btn btn-primary">Edit</a>
-                <a href="#" class="btn btn-primary">Delete</a>
+         <div class="post-holder">
+            <div class="card text-left">
+                <div class="row">
+                    <div class="col-sm-2 photo-holder">
+                        <img id="photo" src="https://pbs.twimg.com/profile_images/927446347879292930/Fi0D7FGJ_400x400.jpg" />
+                    </div>
+
+                    <div class="col-sm-8 post-right">
+                    <h5 class="card-title">@${serverResponse.data[i].user.username}</h5>
+                    <p class="card-text"> ${serverResponse.data[i].body}</p>
+                    <div class="crud-Btn">
+                        <a href="#" class="btn btn-primary">Edit</a>
+                        <a href="#" class="btn btn-primary">Delete</a>
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>
