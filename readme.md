@@ -14,7 +14,7 @@
     
  App logic:
 ---  
-Created a single page app which has 2 seperate models and 1 embedded model. It has a controller, an index.js file and finally the public folder in which we created the additional files such as css file to style the app. The app provides users a platform so that each user can access his own profile can chat with other users and send tweets or respond to other users tweets. 
+Created a single page app which has 2 seperate models and 1 embedded model. It has 2 controllers (userController.js and postController.js), an index.js file and finally the public folder in which we created the additional files such as css file to style the app. The app provides users a platform to write posts and comments on each post. Each user can delete or edit his own post and comment. If user is already a member of the app can log in otherwise needs to sign up.
 
 
 
@@ -22,7 +22,8 @@ Created a single page app which has 2 seperate models and 1 embedded model. It h
  
 Wireframe Diagram:
 ---
-balsamiq????
+![alt text](wireframe.png)  
+ 
 
 ERD Diagram:  
 ---
@@ -68,16 +69,16 @@ Resources:
 
 Approach:
 ---
-We started by clarifying the functionality of the app. Then we discussed the models we want to create. After that we wrote down the packages we need to create the app. The Project manager created a new repository and cloned it to his local computer then created the first files and push it to the git so that each member of the grop were ready to clone the file to their computers. 
+We started by clarifying the functionality of the app. Then we discussed the models we want to create. After that we wrote down the packages we need to create the app. The Project manager created a new repository and cloned it to his local computer then created the first files and push it to the git so that each member of the group were ready to clone the file to their computers. 
 
 Then:
 
-1.  
-1.  
-1.  
-1.  
-1.  
-1.   
+1. completed the models, routes and controller files.
+1. created the passport authentication.
+1. Add the bootstrap to the packege.
+1. Public folder and css styles.
+2. Added more functionalities to the app.
+  
 
 Future Enhancements:
 ---

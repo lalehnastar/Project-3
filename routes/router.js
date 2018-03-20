@@ -5,23 +5,44 @@ const
     userController = require('../controllers/userController.js')    // require user cntrlr
     postController = require('../controllers/postController.js')    // require post cntrlr
 
-    router.get('/', userController.index)
-    router.get('/signup', userController.new)    
-    router.post('/users', userController.create)    
-    // router.get('/user/new', userController.new)
-    router.get('/user/:id/edit', userController.edit)
-    router.get('/user/:id', userController.show)
-    router.patch('/user/:id/', userController.update)
-    router.delete('/user/:id', userController.destroy)
 
-    router.get('/', postController.index)
-    router.post('/post/:id', postController.create) 
-    router.get('/post/:id/new', postController.new)
-    router.get('/user/:id/post/:id', postController.edit)
-    router.get('/post/:id', postController.show)
-    router.patch('/user/:id/post/:id', postController.update)
-    router.delete('/post/:id', postController.destroy)
+// ------------ USER ROUTES
+router.get('/', userController.index)
+router.get('/signup', userController.new)
 
+// Create new user
+router.route('/users')
+    .post(userController.create) 
+
+// Show, update and delete specific user
+router.route('/users/:id')
+    .get(userController.show)
+    .patch(userController.update)
+    .delete(userController.destroy)
+
+// Edit specific user
+router.get('/user/:id/edit', userController.edit)
+
+
+// ------------ POST ROUTES
+router.get('/', postController.index)
+
+// Create new post
+router.post('/posts', postController.create) 
+
+// Create, show and delete specific post
+router.route('/post/:id')   
+    .get(postController.show)
+    .delete(postController.destroy)
+
+// Edit specific post
+router.route('/user/:userId/post/:postId')
+    router.get(postController.edit)
+    router.patch(postController.update)
+
+// Create new post
+router.get('/post/:id/new', postController.new)
+    
 function isLoggedIn(req, res, next) {
     if(req.isAuthenticated()) return next()
     res.redirect('/users/login')
