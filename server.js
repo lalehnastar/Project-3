@@ -52,6 +52,13 @@ app.use(session({							// allows us to generate cookies based on passport confi
 }))			
 app.use(passport.initialize())
 app.use(passport.session())
+// this makes the 'currentUser' available in ANY view
+// also gives me a boolean 'loggedIn' available in ANY view
+app.use((req, res, next) => {
+    app.locals.currentUser = req.user
+    app.locals.loggedIn = !!req.user
+    next()
+})
 
 app.use((req, res, next) => {
 	app.locals.currentUser = req.user
