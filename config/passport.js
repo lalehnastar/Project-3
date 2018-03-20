@@ -13,11 +13,9 @@ passport.deserializeUser((id, done) => {
     })
 })
 
-passport.use('local-signup', new LocalStrategy({                        // the following executes when "sign-up" button is pressed
-    emailField: 'email',                                             // tell passport email and password field names in our DB
-    usernameField: 'username',
+passport.use('local-signup', new LocalStrategy({            // the following executes when "sign-up" button is pressed                                        
+    usernameField: 'username',                              // tell passport email and password field names in our DB
     passwordField: 'password',
-    imageUrlField: 'imageURL',
     passReqToCallback: true
 }, (req, email, password, done) => {
     User.findOne({ email: email}, (err, user) => {                      // makes sure email is unique, check to see if it already exists

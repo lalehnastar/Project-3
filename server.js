@@ -56,8 +56,12 @@ app.get('/', (req, res) => {
     res.render(`${__dirname}/public/index.ejs`)
 })
 
+app.post('/', (req, res) => {
+    console.log("hey")
+})
+
 // Use Router
-app.use('/', postrRouter)
+app.use('/users', postrRouter)
 
 // Web Socket Setup
 io.on('connection', (socket) => {

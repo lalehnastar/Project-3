@@ -53,8 +53,3 @@ function isLoggedIn(req, res, next) {
 
 // export router
 module.exports = router
-
-
-
-
-
