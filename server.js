@@ -23,7 +23,11 @@ const
 // environment port
 const
 	port = process.env.PORT || 3000,
-	mongoConnectionString = process.env.MONGODB_URL || 'mongodb://localhost/postrDB'
+    mongoConnectionString = process.env.MONGODB_URL || 'mongodb://localhost/postrDB'
+
+mongoose.connect(mongoConnectionString, (err)=>{
+    console.log(err || "Connected to MongoDB")
+})
 
 // will store session information as a 'sessions' collection in Mongo
 const store = new MongoDBStore({
@@ -56,12 +60,10 @@ app.get('/', (req, res) => {
     res.render(`${__dirname}/public/index.ejs`)
 })
 
-app.post('/', (req, res) => {
-    console.log("hey")
-})
+
 
 // Use Router
-app.use('/users', postrRouter)
+app.use('/api', postrRouter)
 
 // Web Socket Setup
 io.on('connection', (socket) => {

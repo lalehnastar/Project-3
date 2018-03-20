@@ -1,6 +1,6 @@
 const
     passport = require('passport'),
-    LocalStrategy = require('passport-local').Strategy
+    LocalStrategy = require('passport-local').Strategy,
     User = require('../models/User.js')
 
 passport.serializeUser((user, done) => {
@@ -18,16 +18,18 @@ passport.use('local-signup', new LocalStrategy({            // the following exe
     passwordField: 'password',
     passReqToCallback: true
 }, (req, email, password, done) => {
-    User.findOne({ email: email}, (err, user) => {                      // makes sure email is unique, check to see if it already exists
+    var email = req.body.email
+    User.findOne({email: email}, (err, user) => {                      // makes sure email is unique, check to see if it already exists
         if(err) return done(err)
         if(user) return done(null, false, req.flash('creationMessage', "user already exists")) // return false value to prevent creation of new account with non-uniqueness
 
-        if(!req.body.name || !req.body.password) return done(null, false, req.flash('signupMessage', "All fields required!"))
-
+        if(!req.body.username || !req.body.password) return done(null, false, req.flash('signupMessage', "All fields required!"))
         var newUser = new User()
+        // console.log(newUser.generateHash(req.body.password))
+        console.log(req.body)
         newUser.username = req.body.username
         newUser.email = req.body.email
-        newUser.imageURL = req.body.image_url 
+        newUser.imageURL = req.body.imageURL 
         newUser.password = newUser.generateHash(req.body.password)      // encrypt password
         newUser.save((err, savedUser) => {
             return done(null, newUser, req.flash('loginMessage', "account created"))
@@ -40,6 +42,7 @@ passport.use('local-login', new LocalStrategy({
     passwordField: 'password',
     passReqToCallback: true
 }, (req, email, password, done) => {
+    var username = req.body.username
     User.findOne({ username: username }, (err, user) =>{                                                                   // find user with email provided
         if(err) return done(err)                                                                                           // if error, return done w/ error (allows us to console.log)
         if(!user) return done(null, false, req.flash('loginMessage', "username not found"))                                // if 'user' if falsey, there is no user with that email
