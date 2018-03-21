@@ -64,7 +64,7 @@ app.use((req, res, next) => {               // this makes the 'currentUser' avai
 app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => {
-    res.render(`${__dirname}/public/index.ejs`)
+    res.render(`${__dirname}/views/index.ejs`)
 })
 
 // Use Router

@@ -1,14 +1,14 @@
 <head>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   
 </head>
 
 
 <div id="feed"> </div>
 
-
 <script>
-    var httpClient = axios.create()
+var httpClient = axios.create()
     var $feed = $("#feed")
     var $card = $(".card")
     var posts = []
@@ -29,12 +29,12 @@
                     <h5 class="card-title">@${data.data[i].user.username}</h5>
 
                     <p class="card-text">${data.data[i].body}</p>
-                    <% if(`${currentUser.username}`) { %>
+                    
                     <div class="crud-Btn">
                         <a href="#" id=${data.data[i]._id}  class="btn btn-primary edit">Edit</a>
                         <a href="#" id=${data.data[i]._id}  class="btn btn-primary delete">Delete</a>
                     </div>
-                    <% } %>
+                   
                     </div>
                 </div>
             </div>
@@ -92,8 +92,4 @@
     })
 
 })
-
-
-
 </script>
-
