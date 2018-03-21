@@ -49,6 +49,7 @@ router.post('/posts', postController.create)
 router.route('/posts/:postId')   
     .get(postController.show)
     .delete(postController.destroy)
+    .patch(postController.update)
 
 // Edit specific post
 router.route('/user/:userId/posts/:postId')

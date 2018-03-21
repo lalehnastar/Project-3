@@ -4,13 +4,41 @@
 </head>
 
 
-
 <div id="feed"> </div>
+
 
 <script>
     var httpClient = axios.create()
     var $feed = $("#feed")
+    var $card = $(".card")
+    var posts = []
+    function updateList(data){
+        for(var i = 0; i < data.data.length; i++) {
+        posts.push(data.data[i])
+         $feed.append(`
 
+         <div class="post-holder">
+            <div class="card text-left">
+                <div class="row">
+                    <div class="col-sm-2 photo-holder">
+                        <img id="photo" src="https://pbs.twimg.com/profile_images/927446347879292930/Fi0D7FGJ_400x400.jpg" />
+                    </div>
+
+                    <div class="col-sm-8 post-right">
+                    <h5 class="card-title">@${data.data[i].user.username}</h5>
+                    <p class="card-text"> ${data.data[i].body}</p>
+                    <div class="crud-Btn">
+                        <a href="#" id=${data.data[i]._id}  class="btn btn-primary edit">Edit</a>
+                        <a href="#" id=${data.data[i]._id}  class="btn btn-primary delete">Delete</a>
+                    </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        `)
+    }
+}
     const options = {
         method: "get",
         url: "/api/posts"
@@ -18,25 +46,50 @@
 
     httpClient(options).then((serverResponse)=>{
         console.log(serverResponse)
-        for(var i = 0; i < serverResponse.data.length; i++) {
-         $feed.append(`
-         <div class="card text-left">
-            <div class="row">
-                <div class="col-sm-4">
-                    <img id="photo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Buck_The_GSD.jpg/170px-Buck_The_GSD.jpg">
-                </div>
-                
-                <div class="col-sm-8">
-                <h5 class="card-title">${serverResponse.data[i]._id}</h5>
-                <p class="card-text"> ${serverResponse.data[i].body}</p>
-                <a href="#" class="btn btn-primary">Edit</a>
-                <a href="#" class="btn btn-primary">Delete</a>
-                </div>
-            </div>
-        </div>
-        `)
-        }
+        updateList(serverResponse)
     })
-    
+
+    $feed.on("click", ".delete" , function(){
+        var postId = $(this).attr("id")
+        console.log(postId)
+        var urlLocation = `/api/posts/${postId}`
+        // var specificPost = posts.find((p, i) => p._id === postId)
+        // var index = posts.indexOf(specificPost)
+        // posts.splice(index, 1)
+        // updateList(posts)
+        // debugger
+     httpClient({url: urlLocation , method: "delete"}).then((serverResponse)=>{
+        console.log(serverResponse)
+           
+        })
+        $(this).parents()[4].remove()
+    })
+
+    //get and patch
+    $feed.on("click", ".edit" , function(){
+        var postId = $(this).attr("id")
+        console.log(postId)
+        var postBtn = document.querySelector("#modal")
+        var btn = $('#post')
+        btn.text('Edit')
+        $(postBtn).trigger('click')
+       var postForm =$('#post-form')
+       var url = `/api/posts/${postId}?_method=PATCH`
+       console.log(url)
+       postForm.attr('action', url)
+       
+       console.log(postForm)
+
+
+
+        var urlLocation = `/api/posts/${postId}`
+        httpClient({url: urlLocation , method: "patch"}).then((serverResponse)=>{
+        console.log(serverResponse)
+    })
+
+})
+
+
+
 </script>
 
