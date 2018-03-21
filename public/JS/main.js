@@ -1,9 +1,11 @@
-// Nav Bar
-var post = document.querySelector("#post")
-var status = document.querySelector("#message-text")
+$(function() {
 
-post.addEventListener("click", function (){
-    status.value() = ""
+// Nav Bar
+var $post = $("#post")
+var $status = $("#message-text")
+
+$post.on("click", function (){
+    $status.value() = ""
 })
 
 $("#modal").on("click", function() {
@@ -19,7 +21,6 @@ $("#modal").on("click", function() {
     
     function updateList(data){
         for(var i = 0; i < data.data.length; i++) {
-            console.log(data.data[i].user.username)
             posts.push(data.data[i])
             $feed.prepend(`
                 <div class="post-holder">
@@ -32,13 +33,13 @@ $("#modal").on("click", function() {
                             <div class="col-sm-8 post-right">
                             <h5 class="card-title">@${data.data[i].user.username}</h5>
 
-                            <p class="card-text">${data.data[i].body}</p>
-                            
-                            <div class="crud-Btn">
-                                <a href="#" id=${data.data[i]._id}  class="btn btn-primary edit">Edit</a>
-                                <a href="#" id=${data.data[i]._id}  class="btn btn-primary delete">Delete</a>
-                            </div>
-                        
+                            <p class="card-text" id=1${data.data[i]._id}>${data.data[i].body}</p>
+                            ${loggedIn && currentUser._id === data.data[i].user._id ? `
+                                <div class="crud-Btn">
+                                    <a href="#" id=${data.data[i]._id}  class="btn btn-primary editModal" data-toggle="modal" data-target="#updateModal">Edit</a>
+                                    <a href="#" id=${data.data[i]._id}  class="btn btn-primary delete">Delete</a>
+                                </div> 
+                            ` : ""}
                             </div>
                         </div>
                     </div>
@@ -47,13 +48,12 @@ $("#modal").on("click", function() {
         }
     }
 
-    const options = {
+    var options = {
         method: "get",
         url: "/api/posts"
     }
 
-    httpClient(options).then((serverResponse)=>{
-        console.log(serverResponse)
+    httpClient(options).then((serverResponse) => {
         updateList(serverResponse)
     })
 
@@ -69,18 +69,19 @@ $("#modal").on("click", function() {
     })
 
     // Get and Patch
+    $feed.on("click", ".editModal" , function(){
+        var postId = $(this).attr("id")
+         $("#edit-form").attr("action", `/api/posts/${postId}?_method=PATCH`)
+        $("#textValue").text($("#1" + postId).text())
+        
+     })
+
+    //get and patch
     $feed.on("click", ".edit" , function(){
         var postId = $(this).attr("id")
-        var $postBtn = $("#modal")
-        var btn = $('#post')
-
-        btn.text('Edit')
-        $postBtn.trigger('click')
-        var $postForm = $('#post-form')
-        var url = `/api/posts/${postId}?_method=PATCH`
-        $postForm.attr('action', url)
-
         var urlLocation = `/api/posts/${postId}`
-        httpClient({url: urlLocation , method: "patch"}).then((serverResponse) => {
+        httpClient({url: urlLocation , method: "patch"}).then((serverResponse)=>{
+        console.log(serverResponse)
         })
     })
+})
