@@ -39,8 +39,8 @@ module.exports = {
     },
 
     update: (req, res) =>{
-        Post.findByIdAndUpdate(req.params.id, req.body, (err, updatedPost)=>{
-            res.json({ success: true, message: "post updated.", post: updatedPost})
+        Post.findByIdAndUpdate(req.params.postId, req.body, { new: true}, (err, updatedPost)=>{
+            res.redirect("/")
         })
     },
 

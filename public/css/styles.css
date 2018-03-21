@@ -3,56 +3,56 @@
     text-align: right;
     bottom: 0;
     width: 100%;
-    height: 50px;
+    height: 30px;
     line-height: 30px;
     background-color: #f5f5f5;
 }
 
-.login {
+.login-btns {
+    vertical-align: bottom;
     display: inline-block;
- }
+}
 
- .form-control {
-    height: 45px;
- }
+.form-control {
+    height: 48px;
+}
 
- .logindiv {
+.logindiv {
     margin-top: 15px;
- }
- 
- .welcome-text {
+}
+
+.welcome-text {
     margin-top: 50px;
- }
+}
 
- .sign-up {
+.sign-up {
     margin: 50px 50px;
- }
+}
 
- .post-holder {
+.post-holder {
     margin: 10px 250px;
- }
+}
 
- .post-right {
+.post-right {
     padding: 10px;
- }
+}
 
- .crud-Btn {
+.crud-Btn {
     margin-right: 10px;
     float: right;
- }
+}
 
- .photo-holder {
+.photo-holder {
     padding: 10px;
 
- }
+}
 
- #message-text {
+#message-text {
     height: 100px;
- }
+}
 
- #photo {
+#photo {
     height: 80px;
     width: 80px;
     margin: 10px;
- }
-
+}
