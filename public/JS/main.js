@@ -1,4 +1,3 @@
-
 // Nav Bar
 var post = document.querySelector("#post")
 var status = document.querySelector("#message-text")
@@ -11,8 +10,6 @@ $("#modal").on("click", function() {
     var postForm = $('#post-form')
     postForm.attr('action', '/api/posts')
 })
-
-
 
 // Feed
     var httpClient = axios.create()
@@ -62,7 +59,6 @@ $("#modal").on("click", function() {
 
     $feed.on("click", ".delete" , function(){
         var postId = $(this).attr("id")
-        console.log(postId)
         var urlLocation = `/api/posts/${postId}`
     
         httpClient({url: urlLocation , method: "delete"}).then((serverResponse)=>{
@@ -75,25 +71,16 @@ $("#modal").on("click", function() {
     // Get and Patch
     $feed.on("click", ".edit" , function(){
         var postId = $(this).attr("id")
-        console.log(postId)
-        var postBtn = document.querySelector("#modal")
+        var $postBtn = $("#modal")
         var btn = $('#post')
+
         btn.text('Edit')
-        $(postBtn).trigger('click')
-        var postForm =$('#post-form')
+        $postBtn.trigger('click')
+        var $postForm = $('#post-form')
         var url = `/api/posts/${postId}?_method=PATCH`
-        console.log(url)
-        postForm.attr('action', url)
-       
-        console.log(postForm)
+        $postForm.attr('action', url)
 
         var urlLocation = `/api/posts/${postId}`
-        httpClient({url: urlLocation , method: "patch"}).then((serverResponse)=>{
-        console.log(serverResponse)
+        httpClient({url: urlLocation , method: "patch"}).then((serverResponse) => {
         })
     })
-
- 
-
-
-
