@@ -13,8 +13,8 @@ module.exports = {
     },
 
     show: (req, res) =>{
-        // var newDate = moment(foundEvent.startDate).utc().format('MMMM Do YYYY')
-        //     res.render("eventEdit", {event: foundEvent, newDate:newDate});
+        var newDate = moment(foundEvent.startDate).utc().format('MMMM Do YYYY')
+            res.render("eventEdit", {event: foundEvent, newDate:newDate});
         
         Post.findById(req.params.id, (err, thatPost) => {
             if(err) return res.json({ success: false })

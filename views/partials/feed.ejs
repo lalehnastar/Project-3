@@ -1,11 +1,7 @@
 <head>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<<<<<<< HEAD
-    <script src="moment.js"></script>
-=======
    
->>>>>>> e4c06526430143642afe51b2f85dde1a22646f18
 </head>
 
 
@@ -19,12 +15,8 @@ var httpClient = axios.create()
     
     function updateList(data){
         for(var i = 0; i < data.data.length; i++) {
-<<<<<<< HEAD
             var dateCreated = moment(data.data[i].createdAt).format("MMM Do YY");
             console.log(data)
-=======
-            console.log(data.data[i].user.username)
->>>>>>> e4c06526430143642afe51b2f85dde1a22646f18
         posts.push(data.data[i])
          $feed.prepend(`
          <div class="post-holder">
