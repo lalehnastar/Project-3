@@ -1,6 +1,7 @@
 <head>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="moment.js"></script>
 </head>
 
 
@@ -14,6 +15,8 @@
     var posts = []
     function updateList(data){
         for(var i = 0; i < data.data.length; i++) {
+            var dateCreated = moment(data.data[i].createdAt).format("MMM Do YY");
+            console.log(data)
         posts.push(data.data[i])
          $feed.append(`
 
@@ -27,6 +30,7 @@
                     <div class="col-sm-8 post-right">
                     <h5 class="card-title">@${data.data[i].user.username}</h5>
                     <p class="card-text"> ${data.data[i].body}</p>
+                     <p class="card-text"> ${dateCreated}</p>
                     <div class="crud-Btn">
                         <a href="#" class="btn btn-primary">Edit</a>
                         <a href="#" id=${data.data[i]._id}  class="btn btn-primary delete">Delete</a>
