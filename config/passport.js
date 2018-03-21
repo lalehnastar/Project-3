@@ -22,7 +22,7 @@ passport.use('local-signup', new LocalStrategy({            // the following exe
     var email = req.body.email
     User.findOne({email: email}, (err, user) => {                      // makes sure email is unique, check to see if it already exists
         if(err) return done(err)
-        if(user) return done(null, false, req.flash('creationMessage', "user already exists")) // return false value to prevent creation of new account with non-uniqueness
+        if(user) return done(null, false, req.flash('userAlreadyExists', "user already exists")) // return false value to prevent creation of new account with non-uniqueness
 
         if(!req.body.username || !req.body.password) return done(null, false, req.flash('signupMessage', "All fields required!"))
         var newUser = new User()

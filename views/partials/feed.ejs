@@ -1,22 +1,23 @@
 <head>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   
 </head>
 
 
 <div id="feed"> </div>
 
-
 <script>
-    var httpClient = axios.create()
+var httpClient = axios.create()
     var $feed = $("#feed")
     var $card = $(".card")
     var posts = []
+    
     function updateList(data){
         for(var i = 0; i < data.data.length; i++) {
+            console.log(data.data[i].user.username)
         posts.push(data.data[i])
-         $feed.append(`
-
+         $feed.prepend(`
          <div class="post-holder">
             <div class="card text-left">
                 <div class="row">
@@ -26,13 +27,15 @@
 
                     <div class="col-sm-8 post-right">
                     <h5 class="card-title">@${data.data[i].user.username}</h5>
-                    <p class="card-text"> ${data.data[i].body}</p>
+
+                    <p class="card-text">${data.data[i].body}</p>
+                    
                     <div class="crud-Btn">
-                        <a href="#" class="btn btn-primary">Edit</a>
+                        <a href="#" id=${data.data[i]._id}  class="btn btn-primary edit">Edit</a>
                         <a href="#" id=${data.data[i]._id}  class="btn btn-primary delete">Delete</a>
                     </div>
+                   
                     </div>
-
                 </div>
             </div>
         </div>
@@ -62,8 +65,31 @@
         console.log(serverResponse)
            
         })
-        
+        $(this).parents()[4].remove()
     })
 
-</script>
 
+    //get and patch
+    $feed.on("click", ".edit" , function(){
+        var postId = $(this).attr("id")
+        console.log(postId)
+        var postBtn = document.querySelector("#modal")
+        var btn = $('#post')
+        btn.text('Edit')
+        $(postBtn).trigger('click')
+       var postForm =$('#post-form')
+       var url = `/api/posts/${postId}?_method=PATCH`
+       console.log(url)
+       postForm.attr('action', url)
+       
+       console.log(postForm)
+
+
+
+        var urlLocation = `/api/posts/${postId}`
+        httpClient({url: urlLocation , method: "patch"}).then((serverResponse)=>{
+        console.log(serverResponse)
+    })
+
+})
+</script>
