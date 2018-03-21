@@ -83,5 +83,5 @@ io.on('connection', (socket) => {
 
 // Server Setup
 app.listen(port, (err) => {
-    console.log(err || `Connected to port#: ${PORT}`)
+    console.log(err || `Connected to port#: ${port}`)
 })
