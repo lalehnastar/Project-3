@@ -13,14 +13,14 @@ router.get('/signup', userController.new)
 // Create new user
 router.route('/users')
     .post(passport.authenticate('local-signup', {
-        successRedirect: "/nice",
-        failureRedirect: "/boo"
+        successRedirect: "/",
+        failureRedirect: "/"
     }))
 
 router.route('/login')
     .post(passport.authenticate('local-login', {
         successRedirect: "/",
-        failureRedirect: "/loginfailed"
+        failureRedirect: "/"
     }))
 
 router.route('/logout')
