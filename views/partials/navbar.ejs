@@ -36,7 +36,7 @@
             </div>
           </li>
           <li class="nav-item">
-              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+              <button type="button" id="modal" class="btn btn-success" data-toggle="modal" data-target="#postModal">
                   +
                 </button>
           </li>
@@ -46,25 +46,51 @@
 </nav>
 
   
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">New post...</h5>
+          <h5 class="modal-title" id="exampleModalLabel"></h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
 
-        <form action="/api/posts" method="post">
+        <form action="/api/posts" id ="post-form" method="post">
           <div class="modal-body">
               <div class="form-group">
                 <textarea name="body" class="form-control" id="message-text" placeholder="Tell us what's on your mind..."></textarea>
               </div>
           </div>
+          -- <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button id= "post" type="submit" class="btn btn-primary">Post</button>
+          </div> 
+        </form>
+      </div>
+      </div>
+      </div>
+      <!-- Patch-->
+        <div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+
+        <form action="/api/posts" id ="edit-form" method="patch">
+          <div class="modal-body">
+              <div class="form-group">
+                <textarea name="body" class="form-control" id="message-text" placeholder=${post.body}></textarea>
+              </div> 
+          </div> 
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button id= "post" type="submit" class="btn btn-primary">Post</button>
+            <button type="submit" class="btn btn-primary">Edit</button>
           </div>
         </form>
 
@@ -80,5 +106,16 @@
     status.value() = ""
   })
 
-</script>
+
+
+  
+  /* $("#modal").on("click", function(){
+    var postForm =$('#post-form')
+       postForm.attr('action', '/api/posts')
+  })
+   */
+  
+  
+  </script>
+
 

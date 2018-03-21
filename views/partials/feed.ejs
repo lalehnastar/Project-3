@@ -27,10 +27,11 @@
 
                     <div class="col-sm-8 post-right">
                     <h5 class="card-title">@${data.data[i].user.username}</h5>
+
                     <p class="card-text">${data.data[i].body}</p>
                     <% if(`${currentUser.username}`) { %>
                     <div class="crud-Btn">
-                        <a href="#" class="btn btn-primary">Edit</a>
+                        <a href="#" id=${data.data[i]._id}  class="btn btn-primary edit">Edit</a>
                         <a href="#" id=${data.data[i]._id}  class="btn btn-primary delete">Delete</a>
                     </div>
                     <% } %>
@@ -67,4 +68,32 @@
         $(this).parents()[4].remove()
     })
 
+
+    //get and patch
+    $feed.on("click", ".edit" , function(){
+        var postId = $(this).attr("id")
+        console.log(postId)
+        var postBtn = document.querySelector("#modal")
+        var btn = $('#post')
+        btn.text('Edit')
+        $(postBtn).trigger('click')
+       var postForm =$('#post-form')
+       var url = `/api/posts/${postId}?_method=PATCH`
+       console.log(url)
+       postForm.attr('action', url)
+       
+       console.log(postForm)
+
+
+
+        var urlLocation = `/api/posts/${postId}`
+        httpClient({url: urlLocation , method: "patch"}).then((serverResponse)=>{
+        console.log(serverResponse)
+    })
+
+})
+
+
+
 </script>
+
