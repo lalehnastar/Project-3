@@ -15,15 +15,14 @@ const
     MongoDBStore = require('connect-mongodb-session')(session),
     flash = require('connect-flash'),
     passport = require('passport'),
-    passportConfig = require('./config/passport.js'),
-    PORT = 3000
+    passportConfig = require('./config/passport.js')
     // apiKey = process.env.API_KEY <--- if we use another API
 
 
 // environment port
 const
 	port = process.env.PORT || 3000,
-    mongoConnectionString = process.env.MONGODB_URL || 'mongodb://localhost/postrDB'
+    mongoConnectionString = process.env.MONGODB_URI || 'mongodb://localhost/postrDB'
 
 mongoose.connect(mongoConnectionString, (err)=>{
     console.log(err || "Connected to MongoDB")
@@ -83,6 +82,6 @@ io.on('connection', (socket) => {
 
 
 // Server Setup
-app.listen(PORT, (err) => {
-    console.log(err || `Connected to port#: ${PORT}`)
+app.listen(port, (err) => {
+    console.log(err || `Connected to port#: ${port}`)
 })
