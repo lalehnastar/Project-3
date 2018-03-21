@@ -12,11 +12,12 @@
     var $feed = $("#feed")
     var $card = $(".card")
     var posts = []
+    
     function updateList(data){
         for(var i = 0; i < data.data.length; i++) {
+            console.log(data.data[i].user.username)
         posts.push(data.data[i])
-         $feed.append(`
-
+         $feed.prepend(`
          <div class="post-holder">
             <div class="card text-left">
                 <div class="row">
@@ -25,14 +26,15 @@
                     </div>
 
                     <div class="col-sm-8 post-right">
-                    <h5 class="card-title">@${serverResponse.data[i].user.username}</h5>
-                    <p class="card-text"> ${serverResponse.data[i].body}</p>
+                    <h5 class="card-title">@${data.data[i].user.username}</h5>
+                    <p class="card-text">${data.data[i].body}</p>
+                    <% if(`${currentUser.username}`) { %>
                     <div class="crud-Btn">
                         <a href="#" class="btn btn-primary">Edit</a>
                         <a href="#" id=${data.data[i]._id}  class="btn btn-primary delete">Delete</a>
                     </div>
+                    <% } %>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -62,8 +64,7 @@
         console.log(serverResponse)
            
         })
-        
+        $(this).parents()[4].remove()
     })
 
 </script>
-

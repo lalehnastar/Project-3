@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Postr</a>
+  <a class="navbar-brand" href="/">Postr</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -8,15 +8,17 @@
   <form action="/api/login" method="post">
     <div class="form-group logindiv">
       <div class="login">
+        <div class="login-btns">
         <input type="text" class="form-control" name="username" placeholder="Username">
-      </div>
+        </div>
 
-      <div class="login">
+        <div class="login-btns">
         <input type="password" class="form-control" name="password" placeholder="Password">
-      </div>
+        </div>
 
-      <div class="login">
+        <div class="login-btns">
         <button type="submit" class="btn btn-success btn-lg">Login</button>
+        </div>
       </div>
     </div>
   </form>
@@ -78,11 +80,5 @@
     status.value() = ""
   })
 
-
-  
-  
-  
-  
-  
-  </script>
+</script>
 

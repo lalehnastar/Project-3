@@ -4,7 +4,7 @@ module.exports = {
 
     index: (req, res) => {
         User.find({}, (err, allDemUsers)=> {
-            res.json(allDemUsers)
+            res.json({allDemUsers})
         })
     },
 
@@ -22,7 +22,7 @@ module.exports = {
     create: (req, res) =>{
         User.create(req.body, (err, brandNewUser) => {
             if(err) return res.json({ success: false })
-            res.json({ success: true, message: "user created.", user: brandNewUser })
+            res.json({ success: true, user: brandNewUser })
         })
     },
 

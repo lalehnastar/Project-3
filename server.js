@@ -53,25 +53,17 @@ app.use(session({							// allows us to generate cookies based on passport confi
 
 app.use(passport.initialize())
 app.use(passport.session())
-// this makes the 'currentUser' available in ANY view
-// also gives me a boolean 'loggedIn' available in ANY view
-app.use((req, res, next) => {
-    app.locals.currentUser = req.user
+app.use((req, res, next) => {               // this makes the 'currentUser' available in ANY view
+    app.locals.currentUser = req.user       // also gives me a boolean 'loggedIn' available in ANY view
     app.locals.loggedIn = !!req.user
     next()
 })
 
-app.use((req, res, next) => {
-	app.locals.currentUser = req.user
-	app.locals.loggedIn = !!req.user
-	next()
-})
 
 // ejs configuration
 app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => {
-    console.log("redirect")
     res.render(`${__dirname}/public/index.ejs`)
 })
 
