@@ -73,7 +73,8 @@ app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => {
     console.log("redirect")
-    res.render(`${__dirname}/public/index.ejs`)
+    res.render(`${__dirname}/public/index.ejs`, {moment: moment})
+
 })
 
 // Use Router
