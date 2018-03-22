@@ -24,7 +24,7 @@ const
 // environment port
 const
 	port = process.env.PORT || 3000,
-    mongoConnectionString = process.env.MONGODB_URL || 'mongodb://localhost/postrDB'
+    mongoConnectionString = process.env.MONGODB_URI || 'mongodb://localhost/postrDB'
 
 mongoose.connect(mongoConnectionString, (err)=>{
     console.log(err || "Connected to MongoDB")
@@ -84,6 +84,6 @@ io.on('connection', (socket) => {
 
 
 // Server Setup
-app.listen(PORT, (err) => {
-    console.log(err || `Connected to port#: ${PORT}`)
+app.listen(port, (err) => {
+    console.log(err || `Connected to port#: ${port}`)
 })
