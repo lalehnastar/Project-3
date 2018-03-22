@@ -104,7 +104,7 @@ Future Enhancements:
 
   
 1. Add another model to it like comments (emb model)
-1. Change the style of the app
+3. Drag and drop pictures, upload pictures from a local machine
 1. Log In with Facebook or gmail account
 
 Acknowledgements
@@ -112,6 +112,6 @@ Acknowledgements
 #### Links
 
 * [Heroku]()  
-* [Github]()  
-* [Trello]()
+* [Github](https://github.com/lalehnastar/Project-3)  
+* [Trello](https://trello.com/b/xqAA8772/project-3)
 
