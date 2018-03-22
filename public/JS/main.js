@@ -155,7 +155,6 @@ socket.on('connect', function() {
 })
 
 socket.on('disconnect', function(){
-    console.log(currentUser.username)
     var index = usernames.indexOf(currentUser.username)
     usernames.splice(index, 1)
     socket.emit('disconnected-socket', usernames)
@@ -163,7 +162,7 @@ socket.on('disconnect', function(){
 
 socket.on("user-data", function(data){
     for(i=0;i< data.length;i++){
-        $userList.append(`<li> ${data[i]}</li>`)
+        $userList.append(`<li class="chat-message"> ${data[i]}</li>`)
     }
 })
 
@@ -173,7 +172,8 @@ socket.on("new-connection", function (data){
 })
 
 
-$submitBtn.on("click", function(){
+$('#chat-form').on("submit", function(evt){
+    evt.preventDefault()
    socket.emit("new-message", {body: $body.val(), user: currentUser.username})
   $body.val("")
   $("#typing").text("")
