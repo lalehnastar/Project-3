@@ -6,6 +6,8 @@ $(function() {
     var $editUserModal = $(".editUserModal")
     var $editUserBtn = $(".editUserBtn")
 
+    var $confirmDeletePostBtn = $('.confirmDeletePostBtn')
+
     $post.on("click", function (){
         $status.value() = ""
     })
@@ -47,7 +49,7 @@ $(function() {
             posts.push(data.data[i])
             $feed.prepend(`
                 <div class="post-holder">
-                    <div class="card text-left">
+                    <div class="card text-left" id=${data.data[i]._id}>
                         <div class="row">
                             <div class="col-sm-2 photo-holder">
                                 <img id="photo" src="${data.data[i].user.imageURL}" />
@@ -83,13 +85,50 @@ $(function() {
 
     $feed.on("click", ".delete" , function(){
         var postId = $(this).attr("id")
-        var urlLocation = `/api/posts/${postId}`
+        $confirmDeletePostBtn.attr("data-post-id", postId)
+        
+
+        $('#deletePostModal').modal({
+            backdrop: 'static',
+            keyboard: false
+          })
     
-        httpClient({url: urlLocation , method: "delete"}).then((serverResponse)=>{
-        })
-        $(this).parents()[4].remove()
+//         httpClient({url: urlLocation , method: "delete"}).then((serverResponse)=>{
+//         })
+//         var result = confirm("Want to delete?");
+// if (result) {
+//     //Logic to delete the item
+
+//     $(this).parents()[4].remove()
+// }
+       
     })
 
+    
+    $confirmDeletePostBtn.on("click" , function(){
+        var postId = $(this).attr("data-post-id")
+        var urlLocation = `/api/posts/${postId}`
+        console.log(urlLocation)
+        httpClient({url: urlLocation , method: "delete"}).then((serverResponse)=>{
+            console.log(serverResponse.data)
+            // close the modal
+            // find the post in the feed and remove it from the dom
+            $("#" + postId).remove()
+            $('#deletePostModal').modal('hide')
+        })
+     })
+
+    $('button[name="remove_levels"]').on('click', function(e) {
+        var $form = $(this).closest('form');
+        e.preventDefault();
+        $('#confirm').modal({
+            backdrop: 'static',
+            keyboard: false
+          })
+          .one('click', '#delete', function(e) {
+            $form.trigger('submit');
+          });
+      });
     // Get and Patch Post
     $feed.on("click", ".editModal" , function(){
         var postId = $(this).attr("id")
