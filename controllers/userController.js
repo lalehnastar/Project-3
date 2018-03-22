@@ -1,4 +1,5 @@
 const User = require('../models/User.js')   // require model
+const Post = require('../models/Post')
 
 module.exports = {
 
@@ -11,7 +12,9 @@ module.exports = {
     show: (req, res) => {
         User.findById(req.params.id, (err, thatUser) => {
             if(err) return res.json({ success: false })
-                res.json(thatUser)
+            Post.find({ user: req.params.id }).sort('-createdAt').limit(3).exec((err, userPosts) => {
+                res.json({user: thatUser, posts: userPosts})
+            })
         })
     },
 

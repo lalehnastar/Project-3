@@ -56,3 +56,25 @@
     width: 80px;
     margin: 10px;
 }
+
+
+#chat-system{
+    display: none;
+}
+
+#chat-grid{
+    z-index: 3;
+}
+
+.hover:hover {
+    cursor: pointer;
+}
+
+#dateStamp {
+    font-style: italic;
+}
+
+#strikethrough {
+    text-decoration: line-through;
+}
+
