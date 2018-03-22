@@ -57,9 +57,8 @@ $(function() {
 
                             <div class="col-sm-8 post-right">
                             <h5 class="card-title">@${data.data[i].user.username}</h5>
-
                             <p class="card-text" id=1${data.data[i]._id}>${data.data[i].body}</p>
-                            <span>${dateCreated}</span>
+                            <span id="dateStamp">${dateCreated}</span>
                             ${loggedIn && currentUser._id === data.data[i].user._id ? `
                                 <div class="crud-Btn">
                                     <a href="#" id=${data.data[i]._id}  class="btn btn-primary editModal" data-toggle="modal" data-target="#updateModal">Edit</a>
@@ -86,38 +85,27 @@ $(function() {
     $feed.on("click", ".delete" , function(){
         var postId = $(this).attr("id")
         $confirmDeletePostBtn.attr("data-post-id", postId)
-        
 
         $('#deletePostModal').modal({
             backdrop: 'static',
             keyboard: false
-          })
-    
-//         httpClient({url: urlLocation , method: "delete"}).then((serverResponse)=>{
-//         })
-//         var result = confirm("Want to delete?");
-// if (result) {
-//     //Logic to delete the item
-
-//     $(this).parents()[4].remove()
-// }
-       
+        })
     })
 
-    
+    // Delete post
     $confirmDeletePostBtn.on("click" , function(){
         var postId = $(this).attr("data-post-id")
         var urlLocation = `/api/posts/${postId}`
         console.log(urlLocation)
         httpClient({url: urlLocation , method: "delete"}).then((serverResponse)=>{
-            console.log(serverResponse.data)
             // close the modal
             // find the post in the feed and remove it from the dom
             $("#" + postId).remove()
             $('#deletePostModal').modal('hide')
         })
      })
-
+    
+    // Confirm delete of posts
     $('button[name="remove_levels"]').on('click', function(e) {
         var $form = $(this).closest('form');
         e.preventDefault();
@@ -125,17 +113,17 @@ $(function() {
             backdrop: 'static',
             keyboard: false
           })
-          .one('click', '#delete', function(e) {
+        .one('click', '#delete', function(e) {
             $form.trigger('submit');
-          });
-      });
+        })
+    })
+
     // Get and Patch Post
     $feed.on("click", ".editModal" , function(){
         var postId = $(this).attr("id")
         $("#edit-form").attr("action", `/api/posts/${postId}?_method=PATCH`)
         $("#textValue").text($("#1" + postId).text())
-        
-     })
+    })
 
     // Get and Patch Post
     $feed.on("click", ".edit" , function(){

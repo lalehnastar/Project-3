@@ -56,3 +56,11 @@
     width: 80px;
     margin: 10px;
 }
+
+#dateStamp {
+    font-style: italic;
+}
+
+#strikethrough {
+    text-decoration: line-through;
+}
