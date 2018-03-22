@@ -15,7 +15,7 @@ module.exports = {
     show: (req, res) =>{
         Post.findById(req.params.id, (err, thatPost) => {
             if(err) return res.json({ success: false })
-        res.json(thatPost)
+            res.json(thatPost)
         })
     },
     

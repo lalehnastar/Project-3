@@ -21,6 +21,8 @@ $("#modal").on("click", function() {
     
     function updateList(data){
         for(var i = 0; i < data.data.length; i++) {
+            var dateCreated = moment(data.data[i].createdAt).format("MMM Do YY, h:mm:ss a");
+            console.log(data)
             posts.push(data.data[i])
             $feed.prepend(`
                 <div class="post-holder">
@@ -34,6 +36,7 @@ $("#modal").on("click", function() {
                             <h5 class="card-title">@${data.data[i].user.username}</h5>
 
                             <p class="card-text" id=1${data.data[i]._id}>${data.data[i].body}</p>
+                            <span>${dateCreated}</span>
                             ${loggedIn && currentUser._id === data.data[i].user._id ? `
                                 <div class="crud-Btn">
                                     <a href="#" id=${data.data[i]._id}  class="btn btn-primary editModal" data-toggle="modal" data-target="#updateModal">Edit</a>
