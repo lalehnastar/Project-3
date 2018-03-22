@@ -1,6 +1,4 @@
-<head>
-<script src="JS/main.js"></script>
-</head>
+
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="/">Postr</a>
@@ -9,24 +7,25 @@
     </button>
 
   <% if (!loggedIn){ %>
-  <form action="/api/login" method="post">
-    <div class="form-group logindiv">
-      <div class="login">
-        <div class="login-btns">
-        <input type="text" class="form-control" name="username" placeholder="Username">
-        </div>
+    <form action="/api/login" method="post">
+      <div class="form-group logindiv">
+        <div class="login">
+          <div class="login-btns">
+          <input type="text" class="form-control" name="username" placeholder="Username">
+          </div>
 
-        <div class="login-btns">
-        <input type="password" class="form-control" name="password" placeholder="Password">
-        </div>
+          <div class="login-btns">
+          <input type="password" class="form-control" name="password" placeholder="Password">
+          </div>
 
-        <div class="login-btns">
-        <button type="submit" class="btn btn-success btn-lg">Login</button>
+          <div class="login-btns">
+          <button type="submit" class="btn btn-success btn-lg">Login</button>
+          </div>
         </div>
       </div>
-    </div>
-  </form>
-    <% } %>
+    </form>
+  <% } %>
+  
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <% if (loggedIn){ %>
@@ -60,20 +59,21 @@
           </button>
         </div>
 
-        <form action="/api/posts" id ="post-form" method="post">
-          <div class="modal-body">
-              <div class="form-group">
-                <textarea name="body" class="form-control" id="message-text" placeholder="Tell us what's on your mind..."></textarea>
-              </div>
-          </div>
-           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button id= "post" type="submit" class="btn btn-primary">Post</button>
-          </div> 
-        </form>
+          <form action="/api/posts" id ="post-form" method="post">
+              <div class="modal-body">
+                <div class="form-group">
+                  <textarea name="body" class="form-control" id="message-text" placeholder="Tell us what's on your mind..."></textarea>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button id= "post" type="submit" class="btn btn-primary">Post</button>
+            </div> 
+          </form>
       </div>
-      </div>
-      </div>
+    </div>
+  </div>
 
       <!-- Patch-->
         <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -86,18 +86,19 @@
                 </button>
               </div>
 
-        <form action="/api/posts" id ="edit-form" method="post">
-          <div class="modal-body">
-              <div class="form-group">
-                <textarea name="body" class="form-control" id="textValue"></textarea>
-              </div> 
-          </div> 
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary edit">Edit</button>
-          </div>
-        </form>
+              <form action="/api/posts" id ="edit-form" method="post">
+                <div class="modal-body">
+                  <div class="form-group">
+                    <textarea name="body" class="form-control" id="textValue"></textarea>
+                  </div> 
+                </div> 
 
-      </div>
-    </div>
-  </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary edit">Edit</button>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
