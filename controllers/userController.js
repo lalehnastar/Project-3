@@ -35,7 +35,7 @@ module.exports = {
 
     update: (req, res) =>{
         User.findByIdAndUpdate(req.params.id, req.body, (err, updatedUser) => {
-            res.json({ success: true, message: "user updated.", user: updatedUser})
+            res.redirect("/")
         })
     },
 
