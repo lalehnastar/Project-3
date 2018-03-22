@@ -163,7 +163,7 @@ socket.on('disconnect', function(){
 
 socket.on("user-data", function(data){
     for(i=0;i< data.length;i++){
-        $userList.append(`<li> ${data[i]}</li>`)
+        $userList.append(`<li class="chat-message"> ${data[i]}</li>`)
     }
 })
 

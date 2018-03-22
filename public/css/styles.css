@@ -67,7 +67,7 @@
     left: 5px;
     z-index: 3;
     position: fixed;
-
+    width: 150px;
 }
 
 .hover:hover {
