@@ -50,7 +50,7 @@ $(function() {
                     <div class="card text-left">
                         <div class="row">
                             <div class="col-sm-2 photo-holder">
-                                <img id="photo" src="https://pbs.twimg.com/profile_images/927446347879292930/Fi0D7FGJ_400x400.jpg" />
+                                <img id="photo" src="${data.data[i].user.imageURL}" />
                             </div>
 
                             <div class="col-sm-8 post-right">
