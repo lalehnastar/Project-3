@@ -8,12 +8,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
     <script>var currentUser = null</script>  
     <% if(loggedIn) { %>
         <script>currentUser = <%- JSON.stringify(currentUser) %></script>
     <% } %>
     <script>var loggedIn = !!currentUser</script>
-    <script src="JS/main.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/styles.css">
 </head>
@@ -32,7 +32,12 @@
 
     <!-- Feed -->
     <% if (loggedIn){ %>
+    <div id = "index-feed">
     <%- include ./partials/feed.ejs %>
+    </div>
+    <div id="chat"></div>
+    <%- include ./partials/chat.ejs %>
+    </div>
     <% } %>
 
     <br><br><br>
@@ -41,5 +46,6 @@
 
 <!-- Footer -->
 <% include ./partials/footer.ejs %>
+<script src="JS/main.js"></script>
 </body>
 </html>

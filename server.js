@@ -75,13 +75,40 @@ function authorization(req, res, next) {
 }
 
 // Web Socket Setup
-io.on('connection', (socket) => {
-    console.log("New client connected")
-    io.emit('post-message', post)
+io.on("connection", (socket)=>{
+    var serverUser = []
+    var total = Number(io.engine.clientsCount);
+  
+    io.emit("new-connection", {users: total})
+   
+    
+    socket.on("user-info", function(data){
+        serverUser.push(data.user)
+        io.emit('user-data', serverUser)
+    })
+
+    socket.on('disconnected-socket', function(data){
+        console.log(data)
+        serverUser = data
+        io.emit('user-data', serverUser)
+    })
+
+    socket.on("new-message", function(data){
+        io.emit("user-message",data)
+    })
+
+    socket.on("someone", function(data){
+        io.emit("notify", data)
+    })
 })
+
+
+
+
 
 
 // Server Setup
-app.listen(port, (err) => {
+server.listen(port, (err) => {
     console.log(err || `Connected to port#: ${port}`)
 })
+
