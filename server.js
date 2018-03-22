@@ -16,7 +16,6 @@ const
     flash = require('connect-flash'),
     passport = require('passport'),
     passportConfig = require('./config/passport.js'),
-    moment = require('moment'),
     PORT = 3000
     // apiKey = process.env.API_KEY <--- if we use another API
 
