@@ -3,8 +3,10 @@
 #    A Single Page Application  
 
  
-# Documentation ????           
-              
+ ![alt text](images/screenshot.png)  
+            
+           
+         
 
 
 
@@ -14,7 +16,7 @@
     
  App logic:
 ---  
-Created a single page app which has 2 seperate models and 1 embedded model. It has 2 controllers (userController.js and postController.js), an index.js file and finally the public folder in which we created the additional files such as css file to style the app. The app provides users a platform to write posts and comments on each post. Each user can delete or edit his own post and comment. If user is already a member of the app can log in otherwise needs to sign up.
+Created a single page app which has 2 seperate models. It has 2 controllers (userController.js and postController.js), an index.ejs file, views folder and finally the public folder in which we created the additional files such as css file to style the app, main.js. The app provides users a platform to write posts. Each user can delete or edit his own post and see posts of other users. If user is already a member of the app can log in otherwise needs to sign up.
 
 
 
@@ -22,14 +24,30 @@ Created a single page app which has 2 seperate models and 1 embedded model. It h
  
 Wireframe Diagram:
 ---
-![alt text](wireframe.png)  
+![alt text](images/wireframe.png)  
  
 
 ERD Diagram:  
 ---
 
-![alt text](PR3ERD.png)  
+![alt text](images/PR3ERD.png)  
   
+Installation instructions:  
+--- 
+### Create
+* create a new repo 
+* create a new app in it
+* npm init
+* npm install --save (all the packages in tools section) 
+
+
+### Run  
+
+* fork the repo on Git   
+* git clone url in terminal  
+* npm install
+
+
 
 
 
@@ -44,6 +62,7 @@ Tools:
 * Javascript
 * JQuery
 * express
+* express-session  
 * axios
 * bcrypt-nodejs
 * morgan
@@ -82,12 +101,11 @@ Then:
 
 Future Enhancements:
 ---
-1. 
-1.  
-1.  
-1.  
-1. 
-1. 
+
+  
+1. Add another model to it like comments (emb model)
+1. Change the style of the app
+1. Log In with Facebook or gmail account
 
 Acknowledgements
 ---
@@ -97,9 +115,3 @@ Acknowledgements
 * [Github]()  
 * [Trello]()
 
-#### Images
-
-
-
-
-#### Audio
