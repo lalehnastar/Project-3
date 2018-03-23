@@ -17,7 +17,7 @@
     
  App logic:
 ---  
-Created a single page app which has 2 seperate models. It has 2 controllers (userController.js and postController.js), an index.ejs file, views folder and finally the public folder in which we created the additional files such as css file to style the app, main.js. The app provides users a platform to write posts. Each user can delete or edit his own post and see posts of other users. If user is already a member of the app can log in otherwise needs to sign up.
+Created a single page app which has 2 seperate models. It has 2 controllers (userController.js and postController.js), an index.ejs file, views folder and finally the public folder in which we created the additional files such as css file to style the app, main.js. The app provides users a platform to write posts. Each user can delete or edit his own post and see posts of other users. The users can chat with each other. If user is already a member of the app can log in otherwise needs to sign up.
 
 
 
@@ -97,6 +97,7 @@ Then:
 1. created the passport authentication.
 1. Add the bootstrap to the packege.
 1. Public folder and css styles.
+2. Views folder
 2. Added more functionalities to the app.
   
 
