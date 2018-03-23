@@ -57,7 +57,7 @@ $(function() {
                             </div>
 
                             <div class="col-sm-8 post-right" id=${data.data[i].user.imageURL} >
-                            <h5 class="card-title" id=${data.data[i].user.imageURL}><span data-toggle="modal" data-target="#profileModal" class= "hover" id = ${data.data[i].user._id}>@${data.data[i].user.username}</span></h5>
+                            <h5 class="card-title"><span data-toggle="modal" data-target="#profileModal" class= "hover" id = ${data.data[i].user._id}>@${data.data[i].user.username}</span></h5>
 
                             <p class="card-text" id=1${data.data[i]._id}>${data.data[i].body}</p>
                             <span id="dateStamp">${dateCreated}</span>
@@ -143,6 +143,7 @@ var $user = $("#user")
 var $body = $("#body")
 var $chatList = $("#chat-list")
 var chatList = document.querySelector("#chat-list")
+var $chatForm = $("#chat-form")
 var $submitBtn = $("#submit-button")
 var $end = $("#end")
 var socket = io()
@@ -173,19 +174,28 @@ socket.on("new-connection", function (data){
 })
 
 
-$submitBtn.on("click", function(){
+$chatForm.on("submit", function(evt){
+    evt.preventDefault()
    socket.emit("new-message", {body: $body.val(), user: currentUser.username})
-  $body.val("")
   $("#typing").text("")
    setTimeout(function(){
        chatList.scrollTop = chatList.scrollHeight
    }, 200)
+
 })
+
+$('.enter').keypress(function(evt){
+    if (evt.which == 13){
+        $('#chat-form').submit()
+    }
+})
+
 
 socket.on("user-message", function(data){
     $chatList.append(
         `<div> ${data.user+": "+ data.body}</div>`
     )
+    $body.val("")
     setTimeout(function(){
        chatList.scrollTop = chatList.scrollHeight
    }, 200)
@@ -216,12 +226,11 @@ $("#feed").on("click",".hover", function(){
     var $userEmail = $(this).parent().parent().parent().attr("id")
     var userId = $(this).attr("id")
     var cardList = document.querySelector("#card-list")
-    $("#profile-image").attr("src", $(this).parent().attr("id"))
+   
     $("#email").text($userEmail)
     httpClient({url:`/api/users/${userId}`, method: "get"}).then((serverResponse)=>{
         for (var i=0; i< 3 ; i++){
-            var datePosted = moment(serverResponse.data.posts[i].createdAt).format("MMM Do, YYYY");
-            $('#card-list').append(`<li class="list-group-item">${datePosted}: <br><br> ${serverResponse.data.posts[i].body}</li>`)
+            $('#card-list').append(`<li class="list-group-item">${serverResponse.data.posts[i].body}</li>`)
         }
     })
 })

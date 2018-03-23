@@ -19,29 +19,29 @@
 
 <!-- New post Modal -->
 <div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">New Message</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-
-            <form action="/api/posts" id ="post-form" method="post">
-                <div class="modal-body">
-                    <div class="form-group">
-                    <textarea name="body" class="form-control message-text" id="" placeholder="Tell us what's on your mind..."></textarea>
-                    </div>
-                </div>
-            
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button id="post" type="submit" class="btn btn-primary">Post</button>
-            </div> 
-          </form>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
+
+      <form action="/api/posts" id ="post-form" method="post">
+        <div class="modal-body">
+          <div class="form-group">
+            <textarea name="body" class="form-control message-text" id="" placeholder="Tell us what's on your mind..."></textarea>
+          </div>
+        </div>
+            
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button id="post" type="submit" class="btn btn-primary">Post</button>
+        </div> 
+      </form>
     </div>
+  </div>
 </div>
 
 <!-- Edit Post Modal -->
