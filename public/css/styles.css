@@ -63,14 +63,19 @@
 }
 
 #chat-grid{
-    top: 50px;
-    left: 5px;
+    bottom: 30px;
+    left: 15px;
     z-index: 3;
     position: fixed;
-    width: 150px;
+    width: 250px;
+     
 }
 
 .hover:hover {
+    cursor: pointer;
+}
+
+#chat-show-hide:hover {
     cursor: pointer;
 }
 
@@ -88,6 +93,22 @@
     height: 100px;
 }
 
+#chat-system {
+    background: white;
+}
+
+#chat-form { 
+    width: 300px;   
+}
+
 #long-modal, #email {
     text-align: center;
+}
+
+#submit-button, #body {
+    vertical-align: bottom;
+}
+
+#submit-button {
+    width: 182px;
 }

@@ -1,7 +1,5 @@
 <div class="container" id="chat-grid">
-    <div> # of users:<span id="number-of-users"></span></div>
-    <ul id="user-list"></ul>
-    <h5 id="chat-show-hide">Chat</h5>
+    <button type="button" class="btn btn-outline-primary" id="chat-show-hide">Click to chat!</button>
     <div id="chat-system">
 
         <div id="typing">
@@ -10,8 +8,10 @@
         <div id="chat-list">
         </div>
         <form id="chat-form">
-            <input id ="body" type= "text" placeholder="type something"> 
-            <button id="submit-button">Send</button>
+            <textarea id ="body" type= "text" placeholder="Type here to begin..."></textarea><br>
+            <button class="btn btn-outline-success" id="submit-button">Send</button>
         </form>
+        <div>Available to chat (<span id="number-of-users"></span>):</div>
+    <ul id="user-list"></ul>
     </div>
 </div>
